@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class TasksController extends Controller
@@ -16,7 +18,8 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return view('tasks.index');
+        return view('tasks.index')
+            ->with('tasks', Task::getTasks());
     }
 
     /**
@@ -35,10 +38,13 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Task $task)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|max:10',
+            'title' => 'required|max:255',
+            'description' => 'required|max:500',
+            'status_priority_id' => 'required',
+            'date_end' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -46,6 +52,13 @@ class TasksController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        $task->user_id = Auth::user()->id;
+        $task->title = $request->input('title');
+        $task->description = $request->input('description');
+        $task->status_priority_id = $request->input('status_priority_id');
+        $task->date_end = $request->input('date_end');
+        $task->save();
 
         return redirect(route('tasks.create'));
     }
@@ -69,7 +82,7 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('tasks.edit');
     }
 
     /**
