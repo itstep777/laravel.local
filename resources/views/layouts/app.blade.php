@@ -47,9 +47,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{route('tasks.index')}}">Tasks</a></li>
-                    <li><a href="{{route('tasks.create')}}">Add task</a></li>
+                    @unless (!Auth::check())
+                        <li><a href="{{ url('/home') }}">Home</a></li>
+                        <li><a href="{{route('tasks.index')}}">Tasks</a></li>
+                        <li><a href="{{route('tasks.create')}}">Add task</a></li>
+                    @endunless
                 </ul>
 
                 <!-- Right Side Of Navbar -->

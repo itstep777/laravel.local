@@ -46,6 +46,8 @@ class TasksController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        return redirect(route('tasks.create'));
     }
 
     /**

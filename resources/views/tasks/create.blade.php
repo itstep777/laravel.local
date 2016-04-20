@@ -10,20 +10,12 @@
                     <div class="panel-heading">Add task</div>
                     <div class="panel-body">
                         <div class="col-md-6">
-                            @if (count($errors) > 0)
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             <form action="{{route('tasks.store')}}" method="post">
                                 {{csrf_field()}}
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input type="text" class="form-control" name="title">
+                                    <input type="text" class="form-control" name="title" value="{{old('title')}}">
+                                    <div>{{ $errors->first('title')}}</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
