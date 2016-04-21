@@ -11,4 +11,9 @@ class Task extends Model
     {
         return self::where('user_id', '=', Auth::user()->id)->orderBy('id', 'desc')->get();
     }
+
+    public static function getTaskById($id)
+    {
+        return self::where('id', '=', $id)->firstOrFail();
+    }
 }

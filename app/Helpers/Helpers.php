@@ -1,16 +1,13 @@
 <?php
-namespace App\Http\Controllers;
 
-
-class Helpers extends Controller
+class Helpers
 {
-    public static function select($options = [])
+    public static function select($options = [], $selected = 1, $first_option = '', $attrs = [])
     {
-        echo "<select class='form-control'>";
-            foreach($options as $option)
-            {
-                echo "<option>".$options."</option>";
-            }
-        echo "</select>";
+        return view('_helpers.select')
+            ->with('options', $options)
+            ->with('selected', $selected)
+            ->with('first_option',$first_option)
+            ->with('attrs', $attrs);
     }
 }

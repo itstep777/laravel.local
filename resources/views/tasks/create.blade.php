@@ -23,12 +23,7 @@
                                     <div>{{ $errors->first('description') }}</div>
                                 </div>
                                 <div class="form-group">
-                                    <select name="status_priority_id" class="form-control">
-                                        <option value="">Select status</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="2">3</option>
-                                    </select>
+                                    {!! Helpers::select($priority, old('status_priority_id'), "Выберите важность", ['class' => 'form-control', 'name' => 'status_priority_id']) !!}
                                     <div>{{ $errors->first('status_priority_id') }}</div>
                                 </div>
                                 <div class="form-group">

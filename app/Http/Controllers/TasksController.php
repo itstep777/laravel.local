@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PriorityTasks;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,8 @@ class TasksController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        return view('tasks.create')
+            ->with('priority', PriorityTasks::getPriorityTasks());
     }
 
     /**
@@ -82,7 +84,9 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        return view('tasks.edit');
+        return view('tasks.edit')
+            ->with('priority', PriorityTasks::getPriorityTasks())
+            ->with('task', Task::getTaskById($id));
     }
 
     /**
