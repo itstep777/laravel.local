@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function(){
 
+    Route::post('/tasks/{tasks}', 'TasksController@delete');
     Route::resource('tasks', 'TasksController');
 
 });

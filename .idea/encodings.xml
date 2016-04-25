@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/TasksController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/PriorityTasksSeeder.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/lang/en/if.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/lang/ru/if.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/tasks/create.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/tasks/edit.blade.php" charset="UTF-8" />
   </component>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PriorityTasks;
 use App\Models\Task;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -73,7 +74,7 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -105,10 +106,21 @@ class TasksController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+
+    }
+
+    public function delete($id, Request $request, Task $task)
+    {
+        $submit = $request->input('submit');
+        if(isset($submit))
+        {
+            $task->destroy($request->input('delete'));
+            return redirect(route('tasks.index'));
+        }
     }
 }
